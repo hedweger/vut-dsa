@@ -1,6 +1,6 @@
-package org.th.second;
+package vut.th.third;
 
-public class Numbers {
+public class Numbers implements Comparable<Numbers> {
     private int[][] gamefield;
 
     Numbers() {
@@ -13,6 +13,18 @@ public class Numbers {
         gamefield[2][0] = 8;
         gamefield[2][1] = 3;
         gamefield[2][2] = 1;
+    }
+
+    @Override
+    public int compareTo(Numbers o) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (this.gamefield[i][j] != o.gamefield[i][j]) {
+                    return 0;
+                }
+            }
+        }
+        return 1;
     }
 
     public void print() {
@@ -52,7 +64,7 @@ public class Numbers {
                 this.gamefield[x_pos][y_pos] = old_num;
                 this.gamefield[x_pos + 1][y_pos] = 0;
                 break;
-            case 3: // right 
+            case 3: // right
                 if (y_pos == 2) {
                     System.out.println("Zero is already at the right");
                     return;
@@ -61,7 +73,7 @@ public class Numbers {
                 this.gamefield[x_pos][y_pos] = old_num;
                 this.gamefield[x_pos][y_pos + 1] = 0;
                 break;
-            case 4: // left 
+            case 4: // left
                 if (y_pos == 0) {
                     System.out.println("Zero is already at the left");
                     return;
@@ -74,4 +86,5 @@ public class Numbers {
                 System.out.println("Unknown direction:" + direction);
         }
     }
+
 }
