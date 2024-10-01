@@ -16,15 +16,32 @@ public class Numbers implements Comparable<Numbers> {
     }
 
     @Override
-    public int compareTo(Numbers o) {
+    public int hashCode() {
+        int hash = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (this.gamefield[i][j] != o.gamefield[i][j]) {
-                    return 0;
-                }
+               hash += hash * 10 + this.gamefield[i][j];
+            }
+        }   
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.hashCode() == o.hashCode(); 
+    }
+
+    @Override
+    public int compareTo(Numbers o) {
+        int sum1 = 0;
+        int sum2 = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                sum1 += this.gamefield[i][j];
+                sum2 += o.gamefield[i][j];
             }
         }
-        return 1;
+        return sum1 - sum2;
     }
 
     public void print() {
