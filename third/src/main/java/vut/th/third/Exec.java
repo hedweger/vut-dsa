@@ -23,7 +23,7 @@ public class Exec{
         Numbers n1 = new Numbers();
         Numbers n2 = new Numbers();
         n1.move(1);
-        // n2.move(1);
+        n2.move(1);
 
         HashSet<Numbers> hash_mnozisko = new HashSet<>();
         TreeSet<Numbers> mnozisko = new TreeSet<>();
