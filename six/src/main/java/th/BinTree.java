@@ -1,4 +1,4 @@
-package th;
+package cviok;
 
 public class BinTree {
     private TreeNode head;
@@ -15,7 +15,11 @@ public class BinTree {
         }
         this.head.add(new_value);
     }
-
+	public void print_leaves() {
+		System.out.print("leaves: ");
+        this.head.print_leaves(this.head);
+        System.out.println("");
+    }
     public void print_preorder() {
         System.out.print("pre-order: ");
         this.head.print_preorder(this.head);
