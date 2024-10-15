@@ -1,10 +1,27 @@
-package th;
+package cviok;
 
 public class TreeNode {
     private TreeNode left;
     public int value;
     private TreeNode right;
-
+    
+    void print_leaves(TreeNode root) 
+    { 
+        if (root == null) {
+            return;   
+        }
+        if (root.left == null && root.right == null) 
+        { 
+            System.out.print(root.value + " ");
+            return; 
+        } 
+        if (root.left != null) {
+            print_leaves(root.left); 
+        }
+        if (root.right != null) { 
+            print_leaves(root.right);
+        }
+    }
     public void print_preorder(TreeNode node) {
         if (node == null)
             return;
