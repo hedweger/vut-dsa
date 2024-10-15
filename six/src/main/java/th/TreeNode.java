@@ -5,17 +5,56 @@ public class TreeNode {
     public int value;
     private TreeNode right;
 
-    public boolean contains(int comp) {
+    public void print_preorder(TreeNode node) {
+        if (node == null)
+            return;
+        System.out.print(node.value + " ");
+        print_preorder(node.left);
+        print_preorder(node.right);
+    }
+
+    public void print_postorder(TreeNode node) {
+        if (node == null)
+            return;
+        print_postorder(node.left);
+        print_postorder(node.right);
+        System.out.print(node.value + " ");
+    }
+
+    public void print_inorder(TreeNode node) {
+        if (node == null)
+            return;
+        print_inorder(node.left);
+        System.out.print(node.value + " ");
+        print_inorder(node.right);
+    }
+    public boolean contains(int comp, Boolean res) {
         if (this.value == comp) {
-            return true;
+            res = true;
         }
         if (this.left != null) {
-            return left.contains(comp);
+            res = left.contains(comp, res);
         }
         if (this.right != null) {
-            return right.contains(comp);
+            res = right.contains(comp, res);
         }
-        return false;
+        return res;
+    }
+
+    public void add(int val) {
+        if (val < this.value) {
+            if (this.left == null) {
+                this.left = new TreeNode(val);
+            } else {
+                this.left.add(val);
+            }
+        }else if (val > this.value) {
+            if (this.right == null) {
+                this.right = new TreeNode(val);
+            } else {
+                 this.right.add(val);
+            }
+        }
     }
 
     public TreeNode(int value) {

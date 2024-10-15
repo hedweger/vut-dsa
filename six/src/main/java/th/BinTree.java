@@ -4,7 +4,8 @@ public class BinTree {
     private TreeNode head;
 
     public boolean contains(int comp) {
-        return this.head.contains(comp);
+        Boolean res = false;
+        return this.head.contains(comp, res);
     }
 
     public void add(int new_value) {
@@ -12,53 +13,27 @@ public class BinTree {
             this.head = new TreeNode(new_value);
             return;
         }
-        TreeNode current = this.head;
-        if (current.value > new_value) {
-            if (current.getLeft() != null) {
-                current = current.getLeft();
-            } else {
-                current.setLeft(new TreeNode(new_value));
-            }
-        } else if (current.value < new_value) {
-            if (current.getRight() != null) {
-                current = current.getRight();
-            } else {
-                current.setRight(new TreeNode(new_value));
-            }
-        }
+        this.head.add(new_value);
     }
 
-    public void print() {
-        // does java have a pass by reference thing? this copies a bunch of buffers around, right?
-        String buffer = String.valueOf(this.head.value);
-        buffer = this.print_left(buffer);
-        buffer = this.print_right(buffer);
-        System.out.println(buffer);
+    public void print_preorder() {
+        System.out.print("pre-order: ");
+        this.head.print_preorder(this.head);
+        System.out.println("");
     }
-
-    private String print_right(String buffer) {
-        TreeNode current = this.head.getRight();
-        // get left
-        while (current != null) {
-           buffer = buffer + "->" + current.value;
-           current = current.getRight(); 
-        }
-        return buffer;
+    public void print_inorder() {
+        System.out.print("in-order: ");
+        this.head.print_inorder(this.head);
+        System.out.println("");
     }
-    private String print_left(String buffer) {
-        TreeNode current = this.head.getLeft();
-        // get left
-        while (current != null) {
-           buffer = current.value + "<-" + buffer;
-           current = current.getLeft(); 
-        }
-        return buffer;
+    public void print_postorder() {
+        System.out.print("post-order: ");
+        this.head.print_postorder(this.head);
+        System.out.println("");
     }
-
     public TreeNode getHead() {
         return head;
     }
-
     public void setHead(TreeNode head) {
         this.head = head;
     }
