@@ -13,7 +13,7 @@ public class Exec {
     public static void main(String[] args) {
         Graf g = new Graf();
         g.addPath("1", "6", 6);
-        g.addPath("1", "r", 4);
+        g.addPath("1", "5", 5);
         g.addPath("1", "7", 16);
         g.addPath("6", "7", 8);
         g.addPath("6", "5", 5);
