@@ -3,11 +3,7 @@ package th;
 import java.util.HashMap;
 
 public class Graf {
-    private static HashMap<String, Node> nodes;
-
-    public Graf() {
-        this.nodes = new HashMap<String, Node>();
-    }
+    private static HashMap<String, Node> nodes = new HashMap<String, Node>();
 
     public void addPath(String name1, String name2, int cost) {
         Node n1 = nodes.get(name1);
