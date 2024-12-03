@@ -13,13 +13,45 @@ public class MyList {
     }
 
     public void insert(String data) {
-        var curr_last = this.last;
-        var lc = new ListComponent(data, this.last.getRight(), null, this.parent);
-        curr_last.setRight(lc);
+        var lc = new ListComponent(data, this.last, null, this.parent);
+        if (this.last != null) {
+            this.last.setRight(lc);
+        }
         this.last = lc;
     }
-    
-    // TOHLE IGNORUJ!!
+
+
+    public void swap_every_second() {
+        if (this.first == this.last) {
+            return;
+        }
+        var current = this.first;
+        while (current != null && current.getRight() != null) {
+            var next = current.getRight(); 
+
+            current.setRight(next.getRight());
+            next.setLeft(current.getLeft());
+
+            if (current.getLeft() != null) {
+                current.getLeft().setRight(next);
+            } else {
+                this.first = next;
+            }
+
+            if (next.getRight() != null) {
+                next.getRight().setLeft(current);
+            } else {
+                this.last = current;
+            }
+
+            next.setRight(current);
+            current.setLeft(next);
+
+            current = current.getRight();
+        }
+    }
+   
+    // utilitka na vypis
     public void walk() {
         var curr = this.first;
         while (curr != null) {
@@ -27,5 +59,6 @@ public class MyList {
             curr = curr.getRight();
         }
     }
+
 }
 
